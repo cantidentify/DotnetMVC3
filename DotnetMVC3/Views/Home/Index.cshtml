@@ -1,0 +1,71 @@
+﻿@using DotnetMVC3.Models
+@model HomeViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Category Table</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category ID</th>
+            <th scope="col">Category Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            int index = 0;
+        }
+        @foreach (CategoryModel category in Model.categoryList)
+        {
+            index++;
+            <tr>
+                <th scope="row">@index</th>
+                <td>@category.CategoryID</td>
+                <td>@category.CategoryName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category ID</th>
+            <th scope="col">Category Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            index = 0;
+        }
+        @foreach (GameModel game in Model.gameList)
+        {
+            index++;
+            <tr>
+                <th scope="row">@index</th>
+                <td>@game.GameID</td>
+                <td>@game.GameName</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h1>Select Caterogy</h1>
+
+@Html.DropDownListFor(m => m.dropDownCatName, Model.dropDownCat, "Category", new { @style = "height:25px; width:100px;" })
+@Html.DropDownListFor(m => m.dropDownGameName, Model.dropDownGame, "Game", new { @style = "height:25px; width:100px;" })
+<br />
+<br />
+@*<form id="submitCategory" action="@Url.Action("CategorySelect","Home")">
+    <button id="test" type="submit">Confirm</button>
+</form>*@
+<button id="categorySelect" type="submit">Confirm</button>
+
+<br/>
+<br />
+<select class="hidden" id="renderGame" name="renderGame" style="height:25px; width:100px;" ></select>

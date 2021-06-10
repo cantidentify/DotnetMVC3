@@ -1,0 +1,46 @@
+﻿@model DotnetMVC3.Models.UserDataModel
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="~/Image/profile.svg" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            @using (Html.BeginForm("Autherize", "Login", FormMethod.Post))
+            {
+                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "fadeIn second", placeholder = "Username" } })
+                @Html.ValidationMessageFor(model => model.UserName)
+                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "fadeIn third", placeholder = "Password" } })
+                @Html.ValidationMessageFor(model => model.Password)
+                <input type="submit" class="fadeIn fourth" value="Log In">
+            }
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <p>Don't leak your password.'</p>
+            </div>
+
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+</body>
+</html>
+
